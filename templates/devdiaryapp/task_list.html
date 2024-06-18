@@ -1,0 +1,26 @@
+{% extends 'devdiaryapp/base.html' %}
+
+{% block content %}
+  <div class="container">
+    {% if user.is_authenticated %}
+      <h2 class="text-success-emphasis">Hello {{ user.username }}</h2>
+    {% else %}
+      <h2 class="text-success-emphasis">Hello anonomous user</h2>
+    {% endif %}
+    <h2>Task List</h2>
+    <a href="{% url 'task_create' %}" class="btn btn-primary mb-3">Create New Task</a>
+    <ul class="list-group">
+      {% for task in tasks %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <a href="{% url 'task_detail' task.pk %}">{{ task.task }}</a> - {{ task.due_date }}
+          </div>
+          <div>
+            <a href="{% url 'task_update' task.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+            <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger btn-sm">Delete</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

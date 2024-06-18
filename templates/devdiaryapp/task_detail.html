@@ -1,0 +1,19 @@
+{% extends 'devdiaryapp/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>{{ task.task }}</h2>
+    <p>
+      <strong>Description:</strong> {{ task.description }}
+    </p>
+    <p>
+      <strong>Due Date:</strong> {{ task.due_date }}
+    </p>
+    <p>
+      <strong>Completed:</strong> {{ task.is_completed }}
+    </p>
+    <a href="{% url 'task_update' task.pk %}" class="btn btn-secondary">Edit</a>
+    <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'task_list' %}" class="btn btn-primary">Back to list</a>
+  </div>
+{% endblock %}
